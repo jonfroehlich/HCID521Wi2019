@@ -67,6 +67,14 @@ void loop() {
  */
 void setColor(int red, int green, int blue)
 {
+  Serial.print("Setting color to");
+  Serial.print(" RED=");
+  Serial.print(red);
+  Serial.print(" GREEN=");
+  Serial.print(green);
+  Serial.print(" BLUE=");
+  Serial.println(blue);
+  
   #ifdef COMMON_ANODE
     red = 255 - red;
     green = 255 - green;
