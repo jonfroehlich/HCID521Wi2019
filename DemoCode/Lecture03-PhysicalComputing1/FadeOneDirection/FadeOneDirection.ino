@@ -24,7 +24,7 @@ void setup() {
 // The loop function runs over and over again forever
 void loop() {
   
-  // set the brightness of pin D0:
+  // set the brightness of the LED pin:
   analogWrite(LED_OUTPUT_PIN, _curBrightness);
 
   // change the brightness for next time through the loop:
