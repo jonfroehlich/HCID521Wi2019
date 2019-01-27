@@ -24,13 +24,13 @@ void setup() {
 
 void loop() {
   
-  // set the brightness of pin D0:
+  // set the brightness of the LED pin
   analogWrite(LED_OUTPUT_PIN, _curBrightness);
 
-  // change the brightness for next time through the loop:
+  // change the brightness for next time through the loop
   _curBrightness = _curBrightness + _fadeAmount;
 
-  // reverse the direction of the fading at the ends of the fade:
+  // reverse the direction of the fading at the ends of the fade
   if (_curBrightness <= _minBrightness || _curBrightness >= _maxBrightness) {
     _fadeAmount = -_fadeAmount; // reverses fade direction
   }

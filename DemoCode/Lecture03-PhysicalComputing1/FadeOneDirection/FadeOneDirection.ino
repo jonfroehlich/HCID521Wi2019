@@ -24,10 +24,10 @@ void setup() {
 // The loop function runs over and over again forever
 void loop() {
   
-  // set the brightness of the LED pin:
+  // set the brightness of the LED pin
   analogWrite(LED_OUTPUT_PIN, _curBrightness);
 
-  // change the brightness for next time through the loop:
+  // change the brightness for next time through the loop
   _curBrightness = _curBrightness + 1;
 
   // the maximum value that we can write out to analogWrite is 255
