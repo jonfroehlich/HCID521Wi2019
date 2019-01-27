@@ -15,13 +15,14 @@ const int LED_OUTPUT_PIN = 3;
 
 int _fadeAmount = 5;      // the amount to fade the LED by on each step
 int _curBrightness = 0;   // how bright the LED is
-int _minBrightness = 0;   // the min allowable analogWrite value is 0. Must be less than _maxBrightness
-int _maxBrightness = 128; // the max allowable analogWrite value is 255. Must be greater than _minBrightness
 
+// The setup function runs once when you press reset or power the board
 void setup() {
+  // set the LED pin to as an output
   pinMode(LED_OUTPUT_PIN, OUTPUT);
 }
 
+// The loop function runs over and over again forever
 void loop() {
   
   // set the brightness of the LED pin
@@ -30,8 +31,8 @@ void loop() {
   // change the brightness for next time through the loop
   _curBrightness = _curBrightness + _fadeAmount;
 
-  // reverse the direction of the fading at the ends of the fade
-  if (_curBrightness <= _minBrightness || _curBrightness >= _maxBrightness) {
+  // reverse the direction of the fading at the end of each fade direction
+  if (_curBrightness <= 0 || _curBrightness >= 255) {
     _fadeAmount = -_fadeAmount; // reverses fade direction
   }
   
@@ -53,12 +54,12 @@ void loop() {
  * negatively impact your sampling rate of your read calls. 
  */
 //void loop(){
-//  for(int i = 0; i <= _maxBrightness; i += _fadeAmount){
+//  for(int i = 0; i <= 255; i += _fadeAmount){
 //    analogWrite(LED_OUTPUT_PIN, i);
 //    delay(30);
 //  }
 //
-//  for(int i = _maxBrightness; i >= 0; i -= _fadeAmount){
+//  for(int i = 255; i >= 0; i -= _fadeAmount){
 //    analogWrite(LED_OUTPUT_PIN, i);
 //    delay(30);
 //  }
