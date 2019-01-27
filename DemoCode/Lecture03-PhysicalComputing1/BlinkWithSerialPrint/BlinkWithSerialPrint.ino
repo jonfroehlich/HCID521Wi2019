@@ -1,6 +1,7 @@
 /*
  * Turns on and off pin 3 once a second and writes to the serial port
- * By Jon Froehlich for HCID521
+ * 
+ * By Jon Froehlich
  * http://makeabilitylab.io
  * 
  * Adapted from the official Arduino Blink example:

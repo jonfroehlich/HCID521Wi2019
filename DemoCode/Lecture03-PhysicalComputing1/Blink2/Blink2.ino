@@ -6,7 +6,7 @@
  * is connected towards Pin 4. In this configuration, driving Pin 4 HIGH
  * will turn off the LED. See lecture slides for details.
  * 
- * By Jon Froehlich for HCID521
+ * By Jon Froehlich
  * http://makeabilitylab.io
  * 
  */

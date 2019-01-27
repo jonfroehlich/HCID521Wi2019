@@ -1,7 +1,7 @@
 /*
  * This example changes the colors of the RGB LED
  * 
- * By Jon Froehlich for HCID521
+ * By Jon Froehlich
  * http://makeabilitylab.io
  * 
  * Adapted from https://learn.adafruit.com/adafruit-arduino-lesson-3-rgb-leds?view=all

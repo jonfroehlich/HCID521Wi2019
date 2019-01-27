@@ -7,7 +7,7 @@
  * are identified with a "~" sign, like ~3, ~5, ~6, ~9, ~10 and ~11. On the RedBear
  * Duo, please consult the pin layout data sheet provided in class or the lecture slides.
  *
- * By Jon Froehlich for HCID521
+ * By Jon Froehlich
  * http://makeabilitylab.io
  */
 
