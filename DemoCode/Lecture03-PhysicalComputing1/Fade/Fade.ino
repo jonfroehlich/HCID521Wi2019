@@ -1,11 +1,12 @@
 /*
- * This example shows how to fade an LED on pin 3 using the analogWrite() function 
+ * This example shows how to fade an LED on pin 3 using the analogWrite() function.
+ * The fade goes both directions (fades on and then fades off)
  * 
  * The analogWrite() function uses PWM, so if you want to change the pin you're
  * using, be sure to use another PWM capable pin. On the Arduino Uno, the PWM pins
  * are identified with a "~" sign, like ~3, ~5, ~6, ~9, ~10 and ~11. 
  * 
- * By Jon Froehlich for HCID521
+ * By Jon Froehlich
  * http://makeabilitylab.io
  * Adapted from http://www.arduino.cc/en/Tutorial/Fade
  */
