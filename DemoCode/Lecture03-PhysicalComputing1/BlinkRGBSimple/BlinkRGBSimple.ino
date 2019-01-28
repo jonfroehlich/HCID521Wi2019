@@ -18,6 +18,9 @@ void setup() {
   pinMode(RGB_RED_PIN, OUTPUT);
   pinMode(RGB_GREEN_PIN, OUTPUT);
   pinMode(RGB_BLUE_PIN, OUTPUT);
+
+  // Turn on Serial so we can verify expected colors via Serial Monitor
+  Serial.begin(9600); 
 }
 
 void loop() {
@@ -28,30 +31,35 @@ void loop() {
   // and 255 to turn it off (the opposite of what you might think)
 
   // Set the RGB LED to red
+  Serial.println("Color=Red (0, 255, 255)");
   analogWrite(RGB_RED_PIN, 0);      // turn on the red LED
   analogWrite(RGB_GREEN_PIN, 255);  // turn off the green LED
   analogWrite(RGB_BLUE_PIN, 255);   // turn off the blue LED
   delay(DELAY);
 
   // Set the RGB LED to green
+  Serial.println("Color=Green (255, 0, 255)");
   analogWrite(RGB_RED_PIN, 255);    // turn off the red LED
   analogWrite(RGB_GREEN_PIN, 0);    // turn on the green LED
-  analogWrite(RGB_BLUE_PIN, 0);     // turn on the blue LED
+  analogWrite(RGB_BLUE_PIN, 255);     // turn on the blue LED
   delay(DELAY);
 
   // Set the RGB LED to blue
+  Serial.println("Color=Blue (255, 255, 0)");
   analogWrite(RGB_RED_PIN, 255);    // turn off the red LED
   analogWrite(RGB_GREEN_PIN, 255);  // turn off the green LED
   analogWrite(RGB_BLUE_PIN, 0);     // turn on the blue LED
   delay(DELAY);
 
   // Set the RGB LED to yellow (by turning on green and blue!)
+  Serial.println("Color=Yellow (255, 0, 0)");
   analogWrite(RGB_RED_PIN, 255);    // turn off the red LED
   analogWrite(RGB_GREEN_PIN, 0);    // turn on the green LED
   analogWrite(RGB_BLUE_PIN, 0);     // turn on the blue LED
   delay(DELAY);
 
   // Set the RGB LED to purple (by turning on red and blue!)
+  Serial.println("Color=Purple (0, 255, 0)");
   analogWrite(RGB_RED_PIN, 0);      // turn on the red LED
   analogWrite(RGB_GREEN_PIN, 255);  // turn off the green LED
   analogWrite(RGB_BLUE_PIN, 0);     // turn on the blue LED
