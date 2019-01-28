@@ -9,7 +9,7 @@
 
 // Change this to 0 if you are working with a common cathode RGB LED
 // We purchased Common Anode RGB LEDs for class: https://www.adafruit.com/product/159
-#define COMMON_ANODE 1 
+const boolean COMMON_ANODE = true; 
 
 const int RGB_RED_PIN = 6;
 const int RGB_GREEN_PIN  = 5;
@@ -55,6 +55,10 @@ void loop() {
   Serial.println("Color=White");
   setColor(255, 255, 255);  // white
   delay(DELAY);
+
+  Serial.println("Color=Off");
+  setColor(0, 0, 0);  // white
+  delay(DELAY);
 }
 
 /**
@@ -74,12 +78,13 @@ void setColor(int red, int green, int blue)
   Serial.print(green);
   Serial.print(" BLUE=");
   Serial.println(blue);
-  
-  #ifdef COMMON_ANODE
+
+  // If a common anode LED, invert values
+  if(COMMON_ANODE == true){
     red = 255 - red;
     green = 255 - green;
     blue = 255 - blue;
-  #endif
+  }
   analogWrite(RGB_RED_PIN, red);
   analogWrite(RGB_GREEN_PIN, green);
   analogWrite(RGB_BLUE_PIN, blue);  
