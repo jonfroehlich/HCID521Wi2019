@@ -1,6 +1,7 @@
 /*
  * This example reads in a potentiometer value (from A0) and sets the brightness 
- * of an RGB LED
+ * of an RGB LED. For a simpler though less responsive version of this program, see
+ * TrimpotRGBBrightnessSimple.
  * 
  * By Jon Froehlich
  * http://makeabilitylab.io
@@ -31,7 +32,7 @@ int _colors[][3] = {
 
 int NUM_COLORS = 6;
                    
-int _curColorIndex = 0;
+int _curColorIndex = 0; // used to loop through colors
 
 void setup() {
   // Set the RGB pins to output
