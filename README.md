@@ -13,7 +13,10 @@ Demonstrates two configurations of activating LEDs. One where the LED   anode (l
 
 ## Analog Output Examples
 ## Using an LED
-[FadeOneDirection.ino](https://github.com/jonfroehlich/HCID521Wi2019/blob/master/DemoCode/Lecture03-PhysicalComputing1/FadeOneDirection/FadeOneDirection.ino)<br/>This example shows how to fade an LED on Pin 3 using the analogWrite() function. The fade goes in one direction (from off to a fade on) and then repeats (off to fade on)
+[FadeOneDirection.ino](https://github.com/jonfroehlich/HCID521Wi2019/blob/master/DemoCode/Lecture03-PhysicalComputing1/FadeOneDirection/FadeOneDirection.ino)<br/>This example shows how to fade an LED on Pin 3 using the `analogWrite()` function. The fade goes in one direction (from off to a fade on) and then repeats (off to fade on)
+
+[Fade.ino](https://github.com/jonfroehlich/HCID521Wi2019/blob/master/DemoCode/Lecture03-PhysicalComputing1/Fade/Fade.ino)<br/>
+This example shows how to fade an LED on Pin 3 using the `analogWrite()` function. The fade goes both directions (fades on and then fades off)
 
 ### Using the RGB LED
 [BlinkRGB.ino](https://github.com/jonfroehlich/HCID521Wi2019/blob/master/DemoCode/Lecture03-PhysicalComputing1/BlinkRGB/BlinkRGB.ino)<br/>
