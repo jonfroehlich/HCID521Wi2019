@@ -20,7 +20,7 @@ This example shows how to fade an LED on Pin 3 using the `analogWrite()` functio
 
 ### Using the RGB LED
 [BlinkRGB.ino](https://github.com/jonfroehlich/HCID521Wi2019/blob/master/DemoCode/Lecture03-PhysicalComputing1/BlinkRGB/BlinkRGB.ino)<br/>
-Flashes (blinks) through a series of colors using the RGB LED
+Flashes (blinks) through a series of colors using the RGB LED. For a simpler version of this code, see BlinkRGBSimple.ino.
 
 [BlinkRGBSimple.ino](https://github.com/jonfroehlich/HCID521Wi2019/blob/master/DemoCode/Lecture03-PhysicalComputing1/BlinkRGBSimple/BlinkRGBSimple.ino)<br/>
 Flashes (blinks) through a series of colors using the RGB LED. Should be more straightforward to understand than BlinkRGB.ino
@@ -37,5 +37,10 @@ This example reads in a potentiometer value (from A0) and sets the brightness of
 
 [TrimpotRGBBrightness.ino](https://github.com/jonfroehlich/HCID521Wi2019/blob/master/DemoCode/Lecture03-PhysicalComputing1/TrimpotRGBBrightness/TrimpotRGBBrightness.ino)<br/>
 This example reads in a potentiometer value (from A0) and sets the brightness of an RGB LED. For a simpler though less responsive version of this program, see TrimpotRGBBrightnessSimple.
+
+[TrimpotRGBBrightnessSimple.ino](https://github.com/jonfroehlich/HCID521Wi2019/blob/master/DemoCode/Lecture03-PhysicalComputing1/TrimpotRGBBrightnessSimple/TrimpotRGBBrightnessSimple.ino)<br/>
+This example reads in a potentiometer value (from A0) and sets the brightness of an RGB LED. While more straightforward than TrimpotRGBBrightness, it uses delay() function calls which makes the prototype seem less responsive to changes in the potentiometer.
+
+
 
 
