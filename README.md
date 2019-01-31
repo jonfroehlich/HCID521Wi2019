@@ -35,6 +35,7 @@ Fades through all of the colors of the RGB LED.
 [TrimpotLED.ino](https://github.com/jonfroehlich/HCID521Wi2019/blob/master/DemoCode/Lecture03-PhysicalComputing1/TrimpotLED/TrimpotLED.ino)<br/>
 This example reads in a potentiometer value (from A0) and sets the brightness of an LED (hooked up to Pin 3).
 
-
+[TrimpotRGBBrightness.ino](https://github.com/jonfroehlich/HCID521Wi2019/blob/master/DemoCode/Lecture03-PhysicalComputing1/TrimpotRGBBrightness/TrimpotRGBBrightness.ino)<br/>
+This example reads in a potentiometer value (from A0) and sets the brightness of an RGB LED. For a simpler though less responsive version of this program, see TrimpotRGBBrightnessSimple.
 
 
