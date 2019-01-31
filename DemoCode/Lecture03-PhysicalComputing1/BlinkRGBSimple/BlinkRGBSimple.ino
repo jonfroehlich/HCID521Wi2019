@@ -1,6 +1,6 @@
 /*
  * This example changes the colors of the RGB LED and should be more 
- * straightforward to undertand than BlinkRGB
+ * straightforward to understand than BlinkRGB
  * 
  * By Jon Froehlich
  * http://makeabilitylab.io
