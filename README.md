@@ -28,5 +28,13 @@ Flashes (blinks) through a series of colors using the RGB LED. Should be more st
 [BlinkRGBBrightness.ino](https://github.com/jonfroehlich/HCID521Wi2019/blob/master/DemoCode/Lecture03-PhysicalComputing1/BlinkRGBBrightness/BlinkRGBBrightness.ino)<br/>
 Flashes (blinks) through a series of colors using the RGB LED. The brightness of the RGB LED is set by `_curBrightness`, which ranges from [0, 100] where 100 is brightest and 0 is off.
 
+[FadeRGB.ino](https://github.com/jonfroehlich/HCID521Wi2019/tree/master/DemoCode/Lecture03-PhysicalComputing1/FadeRGB)<br/>
+Fades through all of the colors of the RGB LED.
+
+## Analog Input Examples
+[TrimpotLED.ino](https://github.com/jonfroehlich/HCID521Wi2019/blob/master/DemoCode/Lecture03-PhysicalComputing1/TrimpotLED/TrimpotLED.ino)<br/>
+This example reads in a potentiometer value (from A0) and sets the brightness of an LED (hooked up to Pin 3).
+
+
 
 
