@@ -12,6 +12,10 @@ Turns on and off Pin 3 and shows how to use Serial.print to print values to the 
 Demonstrates two configurations of activating LEDs. One where the LED   anode (long leg) is pointed towards an output pin (in this case, Pin 3). In this configuration, driving Pin 3 HIGH will turn on the LED. And the second where the LED anode is connected to 5V and the cathode is connected towards Pin 4. In this configuration, driving Pin 4 HIGH will turn off the LED. See lecture slides for details.
 
 ## Analog Output Examples
+## Using an LED
+[FadeOneDirection.ino](https://github.com/jonfroehlich/HCID521Wi2019/blob/master/DemoCode/Lecture03-PhysicalComputing1/FadeOneDirection/FadeOneDirection.ino)<br/>This example shows how to fade an LED on Pin 3 using the analogWrite() function. The fade goes in one direction (from off to a fade on) and then repeats (off to fade on)
+
+### Using the RGB LED
 [BlinkRGB.ino](https://github.com/jonfroehlich/HCID521Wi2019/blob/master/DemoCode/Lecture03-PhysicalComputing1/BlinkRGB/BlinkRGB.ino)<br/>
 Flashes (blinks) through a series of colors using the RGB LED
 
@@ -19,5 +23,7 @@ Flashes (blinks) through a series of colors using the RGB LED
 Flashes (blinks) through a series of colors using the RGB LED. Should be more straightforward to understand than BlinkRGB.ino
 
 [BlinkRGBBrightness.ino](https://github.com/jonfroehlich/HCID521Wi2019/blob/master/DemoCode/Lecture03-PhysicalComputing1/BlinkRGBBrightness/BlinkRGBBrightness.ino)<br/>
-Flashes (blinks) through a series of colors using the RGB LED. The brightness of the RGB LED is set by `_curBrightness`, which ranges from [0, 100] where 100 is brightest and 0 is off.`
+Flashes (blinks) through a series of colors using the RGB LED. The brightness of the RGB LED is set by `_curBrightness`, which ranges from [0, 100] where 100 is brightest and 0 is off.
+
+
 
