@@ -34,7 +34,7 @@ Fades through all of the colors of the RGB LED.
 ## Analog Input Examples
 
 ### Using a Trim Potentiometer
-The trim potentiometers you have in your kits have 0 - 10K ohms of resistance ([see the Adafruit link](https://www.adafruit.com/product/356?gclid=Cj0KCQiA1sriBRD-ARIsABYdwwGDMgwBoyz1exlAjqUqEU3sLbYekY7SDkNCvGySmwVg8JoNQq4CXrUaAiTbEALw_wcB))
+The trim potentiometers you have in your kits have 0 - 10K ohms of resistance ([see the Adafruit website](https://www.adafruit.com/product/356?gclid=Cj0KCQiA1sriBRD-ARIsABYdwwGDMgwBoyz1exlAjqUqEU3sLbYekY7SDkNCvGySmwVg8JoNQq4CXrUaAiTbEALw_wcB))
 
 [TrimpotLED.ino](https://github.com/jonfroehlich/HCID521Wi2019/blob/master/DemoCode/Lecture03-PhysicalComputing1/TrimpotLED/TrimpotLED.ino)<br/>
 This example reads in a potentiometer value (from A0) and sets the brightness of an LED (hooked up to Pin 3).
