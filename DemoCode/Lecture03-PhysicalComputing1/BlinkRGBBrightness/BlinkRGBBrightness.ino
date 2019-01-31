@@ -1,5 +1,6 @@
 /*
- * This example changes the colors of the RGB LED
+ * Flashes (blinks) through a series of colors using the RGB LED. The brightness of the
+ * RGB LED is set by _curBrightness [0, 100].
  * 
  * By Jon Froehlich
  * http://makeabilitylab.io
