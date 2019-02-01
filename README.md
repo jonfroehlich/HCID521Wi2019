@@ -31,6 +31,9 @@ Flashes (blinks) through a series of colors using the RGB LED. The brightness of
 [FadeRGB.ino](https://github.com/jonfroehlich/HCID521Wi2019/tree/master/DemoCode/Lecture03-PhysicalComputing1/FadeRGB)<br/>
 Fades through all of the colors of the RGB LED.
 
+[FadeHSL.ino](https://github.com/jonfroehlich/HCID521Wi2019/tree/master/DemoCode/Lecture03-PhysicalComputing1/FadeHSL)<br/>
+Fades through all of the colors of the RGB LED using the HSL color space.
+
 ## Analog Input Examples
 
 ### Using a Trim Potentiometer
