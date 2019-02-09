@@ -1,28 +1,31 @@
-/*
- * IDEAS:
+/* 
+ * This example reads an x,y value from the serial port (where each value is [0,1])
+ * and uses this to control an etch-a-sketch like drawing program
+ * 
+ * FUTURE IDEAS:
  *  - have the etch cursor smoke
  *  - show etch cursor
- *  - add in a 'waiting for data'
+ *  - make stroke a gradient
  *   
  * By Jon Froehlich
  * http://makeabilitylab.io
  * 
  */
 import processing.serial.*;
-import java.awt.geom.Point2D;
 
 // We communicate with the Arduino via the serial port
 Serial _serialPort;
 
 final int ARDUINO__SERIAL_PORT_INDEX = 7;
 
-Point2D.Float _lastPt = null;
-Point2D.Float _curPt = null;
+float _lastPtX = -1, _lastPtY = -1;
+float _curPtX = -1, _curPtY = -1;
 
 void setup() {
   
   size(640, 480);
-
+  // fullScreen(); // uncomment this and comment out size to go fullscreen
+  
   // Print all the available serial ports to the console
   printArray(Serial.list());
 
@@ -32,20 +35,26 @@ void setup() {
   // Don't generate a serialEvent() unless you get a newline character:
   _serialPort.bufferUntil('\n');
   
+  // paint the background only once
   background(10);
+  
+  // setup the etch-a-sketch pen
+  stroke(180); // set the color //<>//
+  strokeWeight(4); // sets the pen stroke width
 }
 
 void draw() {
   
-  if(_curPt != null && _lastPt != null){
-    float lastX = map(_lastPt.x, 0, 1, 0, width);
-    float lastY = map(_lastPt.y, 0, 1, 0, height); //<>//
+  if(_curPtX != -1 && _lastPtX != -1){ // make sure these values have been initialized
     
-    float curX = map(_curPt.x, 0, 1, 0, width);
-    float curY = map(_curPt.y, 0, 1, 0, height);
+    // Convert the [0,1] values to screen coordinate values
+    float lastX = map(_lastPtX, 0, 1, 0, width);
+    float lastY = map(_lastPtY, 0, 1, 0, height);
     
-    stroke(180);
-    strokeWeight(4);
+    float curX = map(_curPtX, 0, 1, 0, width);
+    float curY = map(_curPtY, 0, 1, 0, height);
+    
+    // Draw the line
     line(lastX, lastY, curX, curY);
   }
 }
@@ -67,26 +76,14 @@ void serialEvent (Serial myPort) {
     // Split the comma separated data into individual values
     float [] data = float(split(inString, ','));
     
-    if(data.length >= 2){ // we expect at least x,y values from serial
-      //&& (_curPt == null || _curPt.x != data[0] || _curPt.y != data[1])
-      
-      // initialize point objects
-      if(_curPt == null){
-        _curPt = new Point2D.Float(0,0);
-        _lastPt = new Point2D.Float(0,0);
-      }
-      
-      _lastPt.x = _curPt.x;
-      _lastPt.y = _curPt.y;
-      _curPt.x = data[0];
-      _curPt.y = 1 - data[1]; // reverse y direction
-      
-      println("New data received:");
-      println("_lastPt.x=" + _lastPt.x + " _lastPt.y=" + _lastPt.y + " _curPt.x=" + _curPt.x + " _curPt.y=" + _curPt.y);
-      //printArray(data);
+    if(data.length >= 2){ // we expect at least x,y values from serial    
+      _lastPtX = _curPtX;
+      _lastPtY = _curPtY;
+      _curPtX = data[0];
+      _curPtY = data[1]; 
     }
 
-    // Print out the received data (this is just for debugging, feel free to comment out this line)
+    // Print out the received data (this is just for debugging)
     // printArray(data);
   }
   catch(Exception e) {
