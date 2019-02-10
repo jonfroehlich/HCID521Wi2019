@@ -54,7 +54,7 @@ void loop() {
   }
 
   byte rgb[3];
-  _rgbConverter.hslToRgb(_hue,1.0,0.3f,rgb);
+  _rgbConverter.hslToRgb(_hue, 1.0, 0.3f, rgb);
   
   setColor(rgb[0], rgb[1], rgb[2]); 
 

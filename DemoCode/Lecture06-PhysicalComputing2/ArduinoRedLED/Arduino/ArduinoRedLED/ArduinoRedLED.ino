@@ -24,7 +24,10 @@ void loop() {
   // get the brightness value from analog input [0, 1023]
   int brightnessVal = analogRead(BRIGHTNESS_CONTROL_PIN);
   float brightnessPercentage = brightnessVal / 1023.0; // convert to a percentage
-  Serial.println(brightnessPercentage); // send to Processing program over Serial
+
+  // send data to Processing program over Serial. The '4' specifies the number
+  // of decimal places to use, see https://www.arduino.cc/en/serial/print
+  Serial.println(brightnessPercentage, 4); 
 
   // set the LED brightness based on analog input
   int ledBrightness = map(brightnessVal, 0, 1023, 0, 255); // convert to [0, 255]
