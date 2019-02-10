@@ -16,7 +16,7 @@ import processing.serial.*;
 // We communicate with the Arduino via the serial port
 Serial _serialPort;
 
-final int ARDUINO__SERIAL_PORT_INDEX = 7;
+final int ARDUINO_SERIAL_PORT_INDEX = 7;
 
 float _lastPtX = -1, _lastPtY = -1;
 float _curPtX = -1, _curPtY = -1;
@@ -30,7 +30,7 @@ void setup() {
   printArray(Serial.list());
 
   // Open the serial port
-  _serialPort = new Serial(this, Serial.list()[ARDUINO__SERIAL_PORT_INDEX], 9600);
+  _serialPort = new Serial(this, Serial.list()[ARDUINO_SERIAL_PORT_INDEX], 9600);
 
   // Don't generate a serialEvent() unless you get a newline character:
   _serialPort.bufferUntil('\n');
