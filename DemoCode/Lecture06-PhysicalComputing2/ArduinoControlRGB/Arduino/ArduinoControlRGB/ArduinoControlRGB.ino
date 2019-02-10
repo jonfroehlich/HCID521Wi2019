@@ -1,5 +1,6 @@
 /*
- * TODO
+ * Receives a hue value as a float [0, 1] over the serial port and sets that hue
+ * on an RGB LED. Works with the Processing program ArduinoControlRGB.pde
  * 
  * Uses an RGB to HSL and HSL to RGB conversion library from here:
  *   https://github.com/ratkins/RGBConverter
@@ -10,8 +11,7 @@
  * Adapted from https://learn.adafruit.com/adafruit-arduino-lesson-3-rgb-leds?view=all
  */
 
-#include "src/RGBConverter/RGBConverter.h"
-//#include "RGBConverter.h"
+#include "src/RGBConverter/RGBConverter.h" // from https://github.com/ratkins/RGBConverter
 
 // Change this to 0 if you are working with a common cathode RGB LED
 // We purchased Common Anode RGB LEDs for class: https://www.adafruit.com/product/159
@@ -31,33 +31,32 @@ void setup() {
   pinMode(RGB_GREEN_PIN, OUTPUT);
   pinMode(RGB_BLUE_PIN, OUTPUT);
 
-  // Turn on Serial so we can verify expected colors via Serial Monitor
+  // Turn on Serial so we can receive the hue data
   Serial.begin(9600);   
 }
 
 void loop() {
 
-  
-
   // check if there is data in the serial port
   if(Serial.available()){
-      String data = Serial.readStringUntil("\n");
-      _hue = data.toFloat();
+      String data = Serial.readStringUntil("\n"); // read data off serial
+      _hue = data.toFloat(); // convert to a float
 
-      // On Windows, you can use: https://docs.microsoft.com/en-us/sysinternals/downloads/portmon
+      // For debugging prposes, print out the data we received and our
+      // conversion using Serial.print. Note that because we are using the serial
+      // port to communicate with our Processing program, we can't use the
+      // Arduino IDE's Serial Monitor. So, instead, view it in the Console
+      // of the Processing IDE
       Serial.print("Input string: ");
       Serial.print(data);
       Serial.print("\tAfter conversion to float:");
       Serial.println(_hue);
   }
 
-  
-  
   byte rgb[3];
   _rgbConverter.hslToRgb(_hue,1.0,0.3f,rgb);
   
   setColor(rgb[0], rgb[1], rgb[2]); 
-//  setColor(255,0,0); 
 
   delay(DELAY_INTERVAL);
 }
@@ -68,7 +67,6 @@ void loop() {
  * all colors by intermixing different combinations of red, green, and blue. 
  * 
  * This function is based on https://gist.github.com/jamesotron/766994
- * 
  */
 void setColor(int red, int green, int blue)
 {
