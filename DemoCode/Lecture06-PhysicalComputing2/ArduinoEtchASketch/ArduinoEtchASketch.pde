@@ -4,7 +4,7 @@
  * 
  * FUTURE IDEAS:
  *  - have the etch cursor smoke
- *  - show etch cursor
+ *  - show etch cursor (to do this, we'd have to draw off surface or store values in a array and then draw)
  *  - make stroke a gradient
  *   
  * By Jon Froehlich
