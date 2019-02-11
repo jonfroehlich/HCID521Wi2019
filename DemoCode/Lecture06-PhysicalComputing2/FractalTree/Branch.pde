@@ -1,3 +1,10 @@
+/* 
+ * The branch recursive object, which stores the root and all the branches
+ *
+ * By Jon Froehlich
+ * http://makeabilitylab.io
+ */
+
 class Branch{
   
   public PVector begin;

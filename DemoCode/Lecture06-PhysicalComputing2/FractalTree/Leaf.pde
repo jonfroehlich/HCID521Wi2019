@@ -1,4 +1,9 @@
-
+/* 
+ * The leaf object
+ *
+ * By Jon Froehlich
+ * http://makeabilitylab.io
+ */
 class Leaf{
   public PVector loc;
   float leafWidth = random(2,12);

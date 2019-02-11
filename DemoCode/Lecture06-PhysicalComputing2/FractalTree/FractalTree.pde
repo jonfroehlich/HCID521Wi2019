@@ -1,22 +1,31 @@
 /* 
- * TODO
+ * Creates a recursive fractal tree. The following interactions are supported:
+ *  - Click the mouse to add in new branches
+ *  - The mouse's y-position controls how much of the tree is rendered (move mouse to render more)
+ *  - Press spacebar to save a tree to a file 
+ *  - Press the down arrow to have leaves drop from the tree (with animation)
  *
  * By Jon Froehlich
  * http://makeabilitylab.io
  *
- * This example is based on:
- *  - The Coding Train Fractal Tree: https://www.youtube.com/watch?v=fcdNSZ9IzJM&t=2s
+ * This example is (loosely) based on:
+ *  - The Coding Train Fractal Tree: https://www.youtube.com/watch?v=fcdNSZ9IzJM&t=2s. The code for this is:
+ *    https://github.com/CodingTrain/website/tree/master/CodingChallenges/CC_015_FractalTreeArray/Processing/CC_015_FractalTreeArray
  *
  * Other inspirations:
  *  - http://gregtatum.com/interactive/2014/recursivity-2-branching/
  *
  * FUTURE IDEAS:
  *  - Add lighting
- *  - Gradient background
+ *  - Gradient background (though I like the simplicity currently)
  *  - [done] Change width progressively from root to outter branches
+ *  - [done] Add leaves
+ *  - [done] Have leaves fall down
+ *  - Have easing function for leaves falling down
+ *  - Add in sine wave function on x-position to have leaves sway back and forth as they fall
  *  - Create wind
  *  - Add a forest
- *  - add purple flowers
+ *  - add purple/pink flowers (like blooming cherry blossoms)
  */
 
 
