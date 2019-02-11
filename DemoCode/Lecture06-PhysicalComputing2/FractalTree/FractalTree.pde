@@ -13,9 +13,10 @@
  * FUTURE IDEAS:
  *  - Add lighting
  *  - Gradient background
- *  - Change width progressively from root to outter branches
+ *  - [done] Change width progressively from root to outter branches
  *  - Create wind
  *  - Add a forest
+ *  - add purple flowers
  */
 
 
@@ -24,16 +25,17 @@ int _count = 0;
 Branch _tree;
 
 void setup(){
-  size(640, 480);
+  //size(640, 480);
+  fullScreen();
   
-  //create root-Branch
+  //create root 
   PVector a = new PVector(width / 2, height);
-  PVector b = new PVector(width / 2, height - 100);
+  PVector b = new PVector(width / 2, height - height/4.0);
   _tree = new Branch(null, a, b);
 }
 
 void mousePressed(){
-  if(_count < 10){
+  if(_count < 11){
     _tree.addBranchesToEnd();
   }
  

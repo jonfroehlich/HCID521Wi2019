@@ -88,6 +88,12 @@ class Branch{
     //println("strokeWidth = " + strokeWidth);
     strokeWeight(branch.thickness);
     line(branch.begin.x, branch.begin.y, branch.end.x, branch.end.y); 
+    
+    //if(branch.getDepth() > 6){
+    //  float leafWidth = random(2,12);
+    //  float leafHeight = random(2,12);
+    //  ellipse(branch.end.x, branch.end.y,leafWidth,leafHeight);
+    //}
   }
   
 }
