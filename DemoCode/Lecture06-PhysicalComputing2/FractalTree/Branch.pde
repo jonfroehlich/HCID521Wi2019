@@ -5,6 +5,7 @@ class Branch{
   float thickness;
   Branch parentBranch = null;
   ArrayList<Branch> childrenBranches = new ArrayList<Branch>();
+  ArrayList<Leaf> leaves = new ArrayList<Leaf>();
   
   public Branch(Branch parent, PVector begin, PVector end){
     this.parentBranch = parent;
@@ -17,7 +18,11 @@ class Branch{
     println("depth=" + this.getDepth() + " mag = " + mag + " thickness=" + this.thickness);
   }
   
-  public void createBranches(){ //TODO, in future take in an int numBranches
+  public void createBranches(){
+    createBranches(false); 
+  }
+  
+  public void createBranches(boolean createLeaves){ //TODO, in future take in an int numBranches
     
       PVector dir = PVector.sub(end, begin);
       float angle = 25f; //(500 / (float) width) * 90f;
@@ -36,19 +41,27 @@ class Branch{
       
       this.childrenBranches.add(a);
       this.childrenBranches.add(b);
+      
+      // add leaves
+      if(createLeaves){
+        PVector leafALoc = new PVector(a.end.x + random(-2, 2), a.end.y + random(-2, 2));
+        a.leaves.add(new Leaf(leafALoc));
+        PVector leafBLoc = new PVector(b.end.x + random(-2, 2), b.end.y + random(-2, 2));
+        b.leaves.add(new Leaf(leafBLoc));
+      }
   }
   
-  public void addBranchesToEnd(){
-    addBranchesToEnd(this);
+  public void addBranchesToEnd(boolean createLeaves){
+    addBranchesToEnd(this, createLeaves);
   }
   
-  private void addBranchesToEnd(Branch branch){
+  private void addBranchesToEnd(Branch branch, boolean createLeaves){
     for(Branch childBranch : branch.childrenBranches){
-      addBranchesToEnd(childBranch);
+      addBranchesToEnd(childBranch, createLeaves);
     }
     
     if(!branch.hasChildren()){
-      branch.createBranches();
+      branch.createBranches(createLeaves);
     }
   }
   
@@ -73,13 +86,25 @@ class Branch{
   public void draw(){
     //stroke(255);
     //line(this.begin.x, this.begin.y, this.end.x, this.end.y);  
-    draw(this);
+    draw(this, -1);
   }
   
-  private void draw(Branch branch){
-    for(Branch childBranch : branch.childrenBranches){
-      draw(childBranch);
+  public void draw(int maxDepth){
+    draw(this, maxDepth);
+  }
+  
+  private void draw(Branch branch, int maxDepth){
+    
+    // Controls how much of the tree to show. If maxDepth == -1, shows 
+    // the whole tree
+    if(maxDepth != -1 && branch.getDepth() > maxDepth){
+        return; 
     }
+    
+    for(Branch childBranch : branch.childrenBranches){
+      draw(childBranch, maxDepth);
+    }
+    //stroke(255, 255, 255, 200);
     stroke(255);
   
     PVector dir = PVector.sub(branch.end, branch.begin);
@@ -89,11 +114,10 @@ class Branch{
     strokeWeight(branch.thickness);
     line(branch.begin.x, branch.begin.y, branch.end.x, branch.end.y); 
     
-    //if(branch.getDepth() > 6){
-    //  float leafWidth = random(2,12);
-    //  float leafHeight = random(2,12);
-    //  ellipse(branch.end.x, branch.end.y,leafWidth,leafHeight);
-    //}
+    // draw leaves
+    for(Leaf leaf : branch.leaves){
+      leaf.draw();
+    }
   }
   
 }
