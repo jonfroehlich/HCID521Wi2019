@@ -27,7 +27,8 @@
  *  - Add a forest
  *  - add purple/pink flowers (like blooming cherry blossoms)
  *  - Have two trees morph into each other
- *  - animate the growth (easing functions) rather than discrete growth?
+ *  - [done] animate the growth (easing functions) rather than discrete growth?
+ *  - now that animated growth is done, animate reverse growth as well?
  *  - add in rain? see https://youtu.be/KkyIDI6rQJI
  *  - make it so leaves have a little glow?
  */

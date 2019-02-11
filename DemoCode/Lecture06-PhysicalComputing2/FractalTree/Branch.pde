@@ -9,15 +9,21 @@ class Branch {
 
   public PVector begin;
   public PVector end;
+  
+  PVector growthPt;
   float thickness;
   Branch parentBranch = null;
   ArrayList<Branch> childrenBranches = new ArrayList<Branch>();
   ArrayList<Leaf> leaves = new ArrayList<Leaf>();
+  
+  float growthAmt = 0; // between [0,1] where 1 represents fully grown
+  float growthStep = 0.05f; // amount to grow each draw cycle
 
   public Branch(Branch parent, PVector begin, PVector end) {
     this.parentBranch = parent;
     this.begin = begin;
     this.end = end;
+    this.growthPt = this.begin;
 
     float mag = PVector.sub(end, begin).mag();
     this.thickness = max(1, mag / random(8f, 10f));
@@ -48,8 +54,8 @@ class Branch {
 
   public void createBranches(boolean createLeaves) { //TODO, in future take in an int numBranches
 
-    Branch a = createBranch(25f);
-    Branch b = createBranch(-25f);
+    Branch a = createBranch(random(24f, 26f));
+    Branch b = createBranch(random(-26f, -24f));
 
     this.childrenBranches.add(a);
     this.childrenBranches.add(b);
@@ -131,13 +137,18 @@ class Branch {
     }
     //stroke(255, 255, 255, 200);
     stroke(255);
-
-    PVector dir = PVector.sub(branch.end, branch.begin);
-
     //println("depth=" + branch.getDepth() + " mag = " + branch.end.mag() + "mag2 = " + dir.mag());
     //println("strokeWidth = " + strokeWidth);
     strokeWeight(branch.thickness);
-    line(branch.begin.x, branch.begin.y, branch.end.x, branch.end.y); 
+    
+    if(branch.growthAmt >= 1f){
+      line(branch.begin.x, branch.begin.y, branch.end.x, branch.end.y); 
+    }else{
+      branch.growthPt = PVector.lerp(branch.begin, branch.end, branch.growthAmt);
+      branch.growthAmt += branch.growthStep;
+      
+      line(branch.begin.x, branch.begin.y, branch.growthPt.x, branch.growthPt.y); 
+    }
 
     // draw leaves
     for (Leaf leaf : branch.leaves) {
