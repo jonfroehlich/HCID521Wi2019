@@ -13,5 +13,4 @@ class Leaf{
     fill(this.fillColor);
     ellipse(this.loc.x, this.loc.y, this.leafWidth, this.leafHeight);
   }
-  
 }

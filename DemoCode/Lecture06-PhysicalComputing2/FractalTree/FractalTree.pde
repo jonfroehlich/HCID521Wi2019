@@ -24,6 +24,7 @@
 int _count = 0;
 int _addLeavesAfterDepth = 9;
 int _maxDepth = 11;
+boolean _leavesFall = false;
 Branch _tree;
 
 void setup(){
@@ -44,7 +45,12 @@ void mousePressed(){
 }
 
 void keyPressed() {
-  if (key == ' '){
+  if (key == CODED) {
+    if (keyCode == DOWN) {
+      _leavesFall = true;
+    } 
+  } 
+  else if (key == ' '){
     println("Saving current tree!");
     saveFrame("tree-######.png");
   }else{
@@ -53,6 +59,7 @@ void keyPressed() {
     PVector b = new PVector(width / 2, height - height/4.0);
     _tree = new Branch(null, a, b);
     _count = 0;
+    _leavesFall = false;
   }
 }
 
@@ -61,4 +68,8 @@ void draw(){
   
   int maxDepth = (int)map(mouseY, height, 0, 0, _maxDepth);
   _tree.draw(maxDepth);
+  
+  if(_leavesFall){
+    _tree.leavesFall();
+  }
 }

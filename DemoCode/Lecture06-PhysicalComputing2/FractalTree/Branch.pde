@@ -18,6 +18,23 @@ class Branch{
     println("depth=" + this.getDepth() + " mag = " + mag + " thickness=" + this.thickness);
   }
   
+  public void leavesFall(){
+    leavesFall(this);
+  }
+  
+  private void leavesFall(Branch branch){
+    for(Branch childBranch : branch.childrenBranches){
+      leavesFall(childBranch);
+    }
+    
+    for(Leaf leaf : branch.leaves){
+      if(leaf.loc.y <= height - 2){
+        leaf.loc.y += random(0.5, 4);
+        leaf.loc.x += random(-2, 2);
+      }
+    }
+  }
+  
   public void createBranches(){
     createBranches(false); 
   }
