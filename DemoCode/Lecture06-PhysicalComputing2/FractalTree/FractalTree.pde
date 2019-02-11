@@ -21,16 +21,19 @@
  *  - [done] Change width progressively from root to outter branches
  *  - [done] Add leaves
  *  - [done] Have leaves fall down
- *  - Have easing function for leaves falling down
+ *  - Have easing function for leaves falling down (start slow then speed up slightly)
  *  - Add in sine wave function on x-position to have leaves sway back and forth as they fall
  *  - Create wind
  *  - Add a forest
  *  - add purple/pink flowers (like blooming cherry blossoms)
+ *  - Have two trees morph into each other
+ *  - animate the growth (easing functions) rather than discrete growth?
+ *  - add in rain? see https://youtu.be/KkyIDI6rQJI
  */
 
 
 
-int _count = 0;
+int _branchDepthCount = 0;
 int _addLeavesAfterDepth = 9;
 int _maxDepth = 11;
 boolean _leavesFall = false;
@@ -40,45 +43,51 @@ void setup(){
   size(640, 480);
   //fullScreen();
   
-  //create root 
+  //create the tree! 
+  createTree();
+}
+
+void createTree(){
   PVector a = new PVector(width / 2, height);
-  PVector b = new PVector(width / 2, height - height/4.0);
-  _tree = new Branch(null, a, b);
+    PVector b = new PVector(width / 2, height - height/4.0);
+    _tree = new Branch(null, a, b);
+    _branchDepthCount = 0;
+    _leavesFall = false;
 }
 
 void mousePressed(){
-  if(_count <= _maxDepth){
-    _tree.addBranchesToEnd(_count >= _addLeavesAfterDepth);
-    _count++; 
+  if(_branchDepthCount <= _maxDepth){
+    _tree.addBranchesToEnd(_branchDepthCount >= _addLeavesAfterDepth);
+    _branchDepthCount++; 
   }
 }
 
 void keyPressed() {
   if (key == CODED) {
+    // If the user pressed the 'down' arrow, start the leaves falling animation
     if (keyCode == DOWN) {
       _leavesFall = true;
     } 
   } 
-  else if (key == ' '){
+  else if (key == ' '){ // if the user hits the spacebar, take a screenshot and save
     println("Saving current tree!");
     saveFrame("tree-######.png");
-  }else{
-    // clear the tree
-    PVector a = new PVector(width / 2, height);
-    PVector b = new PVector(width / 2, height - height/4.0);
-    _tree = new Branch(null, a, b);
-    _count = 0;
-    _leavesFall = false;
+  }else{ // else if the user hits any other key, clear the tree
+    createTree();
   }
 }
 
 void draw(){
-  background(51);
+  background(51); // draw the background
   
+  // use the current mouse position to draw only part of the tree
   int maxDepth = (int)map(mouseY, height, 0, 0, _maxDepth);
   _tree.draw(maxDepth);
   
+  // if true, animate leaves falling from tree
   if(_leavesFall){
     _tree.leavesFall();
   }
+  
+  // println(frameRate);
 }
