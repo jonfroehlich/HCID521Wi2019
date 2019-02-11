@@ -24,7 +24,7 @@
  *  - Have easing function for leaves falling down (start slow then speed up slightly)
  *  - Add in sine wave function on x-position to have leaves sway back and forth as they fall
  *  - Create wind
- *  - Add a forest
+ *  - Add a forest (i.e., more than one tree, would likely have to draw to off screen buffer to limit cpu overhead)
  *  - add purple/pink flowers (like blooming cherry blossoms)
  *  - Have two trees morph into each other
  *  - [done] animate the growth (easing functions) rather than discrete growth?
@@ -32,8 +32,6 @@
  *  - add in rain? see https://youtu.be/KkyIDI6rQJI
  *  - make it so leaves have a little glow?
  */
-
-
 
 int _branchDepthCount = 0;
 int _addLeavesAfterDepth = 9;
