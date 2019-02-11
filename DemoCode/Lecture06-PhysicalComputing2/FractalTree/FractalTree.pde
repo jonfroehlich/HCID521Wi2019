@@ -39,26 +39,26 @@ int _maxDepth = 11;
 boolean _leavesFall = false;
 Branch _tree;
 
-void setup(){
+void setup() {
   size(640, 480);
   //fullScreen();
-  
+
   //create the tree! 
   createTree();
 }
 
-void createTree(){
+void createTree() {
   PVector a = new PVector(width / 2, height);
-    PVector b = new PVector(width / 2, height - height/4.0);
-    _tree = new Branch(null, a, b);
-    _branchDepthCount = 0;
-    _leavesFall = false;
+  PVector b = new PVector(width / 2, height - height/4.0);
+  _tree = new Branch(null, a, b);
+  _branchDepthCount = 0;
+  _leavesFall = false;
 }
 
-void mousePressed(){
-  if(_branchDepthCount <= _maxDepth){
+void mousePressed() {
+  if (_branchDepthCount <= _maxDepth) {
     _tree.addBranchesToEnd(_branchDepthCount >= _addLeavesAfterDepth);
-    _branchDepthCount++; 
+    _branchDepthCount++;
   }
 }
 
@@ -67,27 +67,26 @@ void keyPressed() {
     // If the user pressed the 'down' arrow, start the leaves falling animation
     if (keyCode == DOWN) {
       _leavesFall = true;
-    } 
-  } 
-  else if (key == ' '){ // if the user hits the spacebar, take a screenshot and save
+    }
+  } else if (key == ' ') { // if the user hits the spacebar, take a screenshot and save
     println("Saving current tree!");
     saveFrame("tree-######.png");
-  }else{ // else if the user hits any other key, clear the tree
+  } else { // else if the user hits any other key, clear the tree
     createTree();
   }
 }
 
-void draw(){
+void draw() {
   background(51); // draw the background
-  
+
   // use the current mouse position to draw only part of the tree
   int maxDepth = (int)map(mouseY, height, 0, 0, _maxDepth);
   _tree.draw(maxDepth);
-  
+
   // if true, animate leaves falling from tree
-  if(_leavesFall){
+  if (_leavesFall) {
     _tree.leavesFall();
   }
-  
+
   // println(frameRate);
 }
