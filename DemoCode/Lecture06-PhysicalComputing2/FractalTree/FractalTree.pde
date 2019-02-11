@@ -29,6 +29,7 @@
  *  - Have two trees morph into each other
  *  - animate the growth (easing functions) rather than discrete growth?
  *  - add in rain? see https://youtu.be/KkyIDI6rQJI
+ *  - make it so leaves have a little glow?
  */
 
 
