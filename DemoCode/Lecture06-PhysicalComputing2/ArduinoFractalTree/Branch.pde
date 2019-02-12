@@ -31,15 +31,33 @@ class Branch {
     //println("depth=" + this.getDepth() + " mag = " + mag + " thickness=" + this.thickness);
   }
 
-  public boolean isGrowing(){
-    
-    if(this.growthAmt >= 1 && this.growthStep > 0){
-      return true;  
-    }else if(this.growthAmt <= 0 && this.growthStep < 0){
-      return true; 
+  public boolean isGrowing(boolean recursive){
+    if(recursive){
+      return isGrowing(this);
+    }else{
+      if(this.growthAmt >= 1 && this.growthStep > 0){
+        return true;  
+      }else if(this.growthAmt <= 0 && this.growthStep < 0){
+        return true; 
+      }
+      return false;
     }
-    return false;
+  }
+  
+  private boolean isGrowing(Branch branch){
+    boolean isGrowing = true;
+    for (Branch childBranch : branch.childrenBranches) {
+      isGrowing = isGrowing & isGrowing(childBranch);
+    }
     
+    if(branch.growthAmt >= 1 && branch.growthStep > 0){
+      isGrowing = true;  
+    }else if(branch.growthAmt <= 0 && branch.growthStep < 0){
+      isGrowing= true; 
+    }else{
+      isGrowing = false;
+    }  
+    return isGrowing;
   }
 
   public void leavesFall() {

@@ -89,6 +89,10 @@ void serialEvent (Serial myPort) {
     if (inString != null) {
       float curArduinoVal = float(inString);
       int newDesiredTreeDepth = (int)map(curArduinoVal, 0, 0.95, 0, MAX_TREE_SIZE);
+      
+      // TODO switch growth stuff to draw() function so we can better animate stuff
+      // add a isGrowing recursive function to branch (just added this but needs testing)
+      // only grow one depth at a time
       for(int i = _branchDepthCount; i <= newDesiredTreeDepth; i++){
         boolean addLeavesToBranch = _branchDepthCount >= _addLeavesAfterDepth;
         println("newDesiredTreeDepth=" + newDesiredTreeDepth + " _branchDepthCount=" + _branchDepthCount + 
