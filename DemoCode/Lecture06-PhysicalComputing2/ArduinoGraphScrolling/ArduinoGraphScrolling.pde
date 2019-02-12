@@ -50,7 +50,7 @@ void draw() {
     //println("i=" + i + " _curWriteIndex=" + _curWriteIndex + " yVal=" + yVal + " xPos=" + xPos);
   }
   
-  
+  // println("xPos=" + xPos + " (width - _curWriteIndex)=" + (width - _curWriteIndex));
   for(int i = 0; i < _curWriteIndex; i++){
     //draw the line
     int yVal = _circularBuffer[i];
