@@ -34,17 +34,17 @@ void draw(){
   text(strPixelCoordinates, 0, strHeight - textDescent() - 2);
   
   // draw top right corner
-  strPixelCoordinates = String.format("(x=%d,y=0)", width);
+  strPixelCoordinates = String.format("(x=%d,y=0)", width - 1);
   strWidth = textWidth(strPixelCoordinates);
   text(strPixelCoordinates, width - strWidth, strHeight - textDescent() - 2);
   
   // draw bottom right corner
-  strPixelCoordinates = String.format("(x=%d,y=%d)", width, height);
+  strPixelCoordinates = String.format("(x=%d,y=%d)", width - 1, height - 1);
   strWidth = textWidth(strPixelCoordinates);
   text(strPixelCoordinates, width - strWidth, height - textDescent());
   
   // draw bottom left corner
-  strPixelCoordinates = String.format("(x=%d,y=%d)", 0, height);
+  strPixelCoordinates = String.format("(x=%d,y=%d)", 0, height - 1);
   strWidth = textWidth(strPixelCoordinates);
   text(strPixelCoordinates, 0, height - textDescent());
   
@@ -61,5 +61,13 @@ void draw(){
   // draw position of mouse
   strPixelCoordinates = String.format("(x=%d,y=%d)", mouseX, mouseY);
   strWidth = textWidth(strPixelCoordinates);
-  text(strPixelCoordinates, mouseX, mouseY);
+  float xPos = mouseX;
+  if(mouseX + strWidth > width){
+    xPos = width - strWidth;
+  }
+  float yPos = mouseY;
+  if(mouseY - strHeight < 0){
+     yPos = strHeight - textDescent();
+  }
+  text(strPixelCoordinates, xPos, yPos);
 }
