@@ -1,6 +1,7 @@
 /* 
- * This example parses multiple floating point values off of serial (formatted as a comma separated list or 'csv')
- * and graphs them. This is a more complicated example than ArduinoGraph and ArduinoGraphScrolling
+ * This example parses multiple floating point values off of the serial port (formatted as a comma separated list or 'csv')
+ * and plots them in a line graph. Each float value is assumed to be [0, 1]. This is a more complicated example than 
+ * ArduinoGraph and ArduinoGraphScrolling
  * 
  * By Jon Froehlich
  * http://makeabilitylab.io
