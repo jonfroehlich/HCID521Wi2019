@@ -1,6 +1,8 @@
 /*
  * This example shows how to use the HC-SR04 Ultrasonic Sensor, which we purchased
- * from Sparkfun: https://www.sparkfun.com/products/13959 for your kits.
+ * from Sparkfun: https://www.sparkfun.com/products/13959 for your kits. The
+ * sensor readings are smoothed using a sliding window average:
+ *  https://www.arduino.cc/en/Tutorial/Smoothing
  * 
  *    Hardware Connections:
  *  Arduino | HC-SR04 
@@ -29,6 +31,12 @@ const int ECHO_PIN = 8;
 // Anything over 400 cm (23200 us pulse) is "out of range"
 const unsigned int MAX_DIST = 23200;
 
+const int SMOOTHING_BUFFER_SIZE = 10;
+int _smoothingBuffer[SMOOTHING_BUFFER_SIZE];
+int _smoothingIndex = 0;
+int _sensorTotal = 0;
+float _sensorAvg = 0;
+
 void setup() {
 
   // The Trigger pin will tell the sensor to range find
@@ -38,6 +46,11 @@ void setup() {
 
   // We'll use the serial monitor to view the sensor output
   Serial.begin(9600);
+
+  // initialize all the readings to 0:
+  for (int i = 0; i < SMOOTHING_BUFFER_SIZE; i++) {
+    _smoothingBuffer[i] = 0;
+  }
 }
 
 void loop() {
@@ -45,8 +58,6 @@ void loop() {
   unsigned long t1;
   unsigned long t2;
   unsigned long pulse_width;
-  float cm;
-  float inches;
 
   // Hold the trigger pin high for at least 10 us
   digitalWrite(TRIG_PIN, HIGH);
@@ -70,21 +81,49 @@ void loop() {
   // are found in the datasheet, and calculated from the assumed speed 
   // of sound in air at sea level (~340 m/s).
   // Datasheet: https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf
-  cm = pulse_width / 58.0;
-  inches = pulse_width / 148.0;
+  float distanceCm = pulse_width / 58.0;
+  float distanceInches = pulse_width / 148.0;
 
   // Print out results
 //  if ( pulse_width > MAX_DIST ) {
 //    Serial.println("Out of range");
 //  } else {
-//    Serial.print(cm);
+//    Serial.print(distanceCm);
 //    Serial.print(" cm \t");
-//    Serial.print(inches);
+//    Serial.print(distanceInches);
 //    Serial.println(" in");
 //  }
 
-  float distanceFraction = constrain(cm/150.0f, 0, 1);
-  Serial.println(distanceFraction, 4);
+  // subtract the last reading:
+  _sensorTotal = _sensorTotal - _smoothingBuffer[_smoothingIndex];
+  
+  // add in new sensor value
+  _smoothingBuffer[_smoothingIndex] = distanceCm;
+  
+  // add the reading to the total:
+  _sensorTotal = _sensorTotal + _smoothingBuffer[_smoothingIndex];
+  
+  // advance to the next position in the array:
+  _smoothingIndex = _smoothingIndex + 1;
+
+  // if we're at the end of the array...
+  if (_smoothingIndex >= SMOOTHING_BUFFER_SIZE) {
+    // ...wrap around to the beginning:
+    _smoothingIndex = 0;
+  }
+
+  // calculate the average:
+  _sensorAvg = _sensorTotal / SMOOTHING_BUFFER_SIZE;
+
+  if ( pulse_width < MAX_DIST ){
+//    Serial.print(distanceCm);
+//    Serial.print(" cm,");
+//    Serial.print(_sensorAvg);
+//    Serial.println(" cm,");
+
+    float distanceFraction = constrain(_sensorAvg/200.0f, 0, 1);
+    Serial.println(distanceFraction);
+  }
   
   // The HC-SR04 datasheet recommends waiting at least 60ms before next measurement
   // in order to prevent accidentally noise between trigger and echo
