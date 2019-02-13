@@ -41,7 +41,8 @@ class Branch {
     }
 
     for (Leaf leaf : branch.leaves) {
-      if (leaf.loc.y <= height - 2) {
+      // check if leaves have hit the ground, if not, keep falling
+      if (leaf.loc.y <= height - 2) { 
         leaf.loc.y += random(0.5, 4);
         leaf.loc.x += random(-2, 2);
       }
@@ -54,30 +55,40 @@ class Branch {
 
   public void createBranches(boolean createLeaves) { //TODO, in future take in an int numBranches
 
-    Branch a = createBranch(random(24f, 26f));
-    Branch b = createBranch(random(-26f, -24f));
-
-    this.childrenBranches.add(a);
+    if(random(0,1) >= 0.05){
+      Branch a = createBranch(random(24f, 26f), createLeaves);
+      Branch b = createBranch(random(-26f, -24f), createLeaves);
+      this.childrenBranches.add(a);
     this.childrenBranches.add(b);
-
-    // add leaves
-    if (createLeaves) {
-      PVector leafALoc = new PVector(a.end.x + random(-2, 2), a.end.y + random(-2, 2));
-      a.leaves.add(new Leaf(leafALoc));
-      PVector leafBLoc = new PVector(b.end.x + random(-2, 2), b.end.y + random(-2, 2));
-      b.leaves.add(new Leaf(leafBLoc));
+    }else{
+      Branch a = createBranch(random(24f, 26f), createLeaves);
+      Branch b = createBranch(random(-2f, 2f), createLeaves);
+      Branch c = createBranch(random(-26f, -24f), createLeaves);
+      this.childrenBranches.add(a);
+      this.childrenBranches.add(b);
+      this.childrenBranches.add(c);
     }
+
+    
+
   }
 
-  private Branch createBranch(float angleInDegrees) {
+  private Branch createBranch(float angleInDegrees, boolean createLeaves) {
     PVector dir = PVector.sub(this.end, this.begin);
     
     // Convert angle to radians
     float theta = radians(angleInDegrees);
     dir.rotate(theta);
-    dir.mult(random(0.5, 0.85));
+    dir.mult(random(0.5, 0.9));
     PVector newEnd = PVector.add(this.end, dir);
     Branch newBranch = new Branch(this, this.end, newEnd);
+    
+    if(createLeaves && random(0,1) >= 0.7){
+      float leafXLoc = newBranch.end.x + random(-6, 6);
+      float leafYLoc = newBranch.end.y + random(-6, 6);
+      PVector leafLoc = new PVector(leafXLoc, leafYLoc);
+      newBranch.leaves.add(new Leaf(leafLoc));
+    }
     
     return newBranch;
   }

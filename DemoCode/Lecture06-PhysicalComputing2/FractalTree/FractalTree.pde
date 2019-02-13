@@ -17,7 +17,7 @@
  *
  * FUTURE IDEAS:
  *  - Add lighting
- *  - Gradient background (though I like the simplicity currently)
+ *  - Gradient background (though I like the simplicity currently). Maybe sun or moon in background?
  *  - [done] Change width progressively from root to outter branches
  *  - [done] Add leaves
  *  - [done] Have leaves fall down
@@ -31,6 +31,7 @@
  *  - now that animated growth is done, animate reverse growth as well?
  *  - add in rain? see https://youtu.be/KkyIDI6rQJI
  *  - make it so leaves have a little glow?
+ *  - don’t react to new tree size input if the tree is currently growing
  */
 
 int _branchDepthCount = 0;
