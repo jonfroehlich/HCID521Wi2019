@@ -60,10 +60,14 @@ void serialEvent (Serial myPort) {
     // https://processing.org/reference/libraries/serial/index.html
     String inString = trim(_serialPort.readStringUntil('\n'));
     
-    if(inString != null){
+    // Our parser can handle either csv strings or just one float per line
+    if (inString.contains(",")) {
+      float [] data = float(split(inString, ','));
+      _curArduinoVal = data[0];
+    } else {
       _curArduinoVal = float(inString);
-      println("Read in: " + inString + " Converted val: " + _curArduinoVal + "(" + (int)(_curArduinoVal * 1023) + ")");
     }
+    println("Read in: " + inString + " Converted val: " + _curArduinoVal + " (" + (int)(_curArduinoVal * 1023) + ")");
   }
   catch(Exception e) {
     println(e);
