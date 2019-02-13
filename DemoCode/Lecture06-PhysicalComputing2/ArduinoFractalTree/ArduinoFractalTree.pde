@@ -1,16 +1,14 @@
 /* 
- * Creates a recursive fractal tree. The following interactions are supported:
- *  - Click the mouse to add in new branches
+ * Creates a recursive fractal tree based on float values [0,1] from the serial port. 
+ * The following interactions are supported:
  *  - Press spacebar to save a tree to a file 
  *  - Press the down arrow to have leaves drop from the tree (with animation)
  *
  * By Jon Froehlich
  * http://makeabilitylab.io
  *
- * This example is based on Jon Froehlich's Fractal Tree, which is based on:
- *  - The Coding Train Fractal Tree: https://www.youtube.com/watch?v=fcdNSZ9IzJM&t=2s. The code for this is:
- *    https://github.com/CodingTrain/website/tree/master/CodingChallenges/CC_015_FractalTreeArray/Processing/CC_015_FractalTreeArray
- *
+ * This example is based on Jon Froehlich's Fractal Tree, which is based on The Coding Train 
+ * Fractal Tree by Daniel Shiffman: https://www.youtube.com/watch?v=fcdNSZ9IzJM&t=2s. 
  */
 import processing.serial.*;
 
@@ -79,7 +77,6 @@ void draw() {
   // println(frameRate);
 }
 
-boolean setGrowthNegative = false;
 void serialEvent (Serial myPort) {
   try {
     // Grab the data off the serial port. See: 
@@ -87,10 +84,19 @@ void serialEvent (Serial myPort) {
     String inString = trim(_serialPort.readStringUntil('\n'));
 
     if (inString != null) {
-      float curArduinoVal = float(inString);
+      float curArduinoVal = -1;
+      
+      // Our parser can handle either csv strings or just one float per line
+      if(inString.contains(",")){
+        float [] data = float(split(inString, ','));
+        curArduinoVal = data[0];
+      }else{
+        curArduinoVal = float(inString);
+      }
+       
       int newDesiredTreeDepth = (int)map(curArduinoVal, 0, 0.95, 0, MAX_TREE_SIZE);
       
-      // TODO switch growth stuff to draw() function so we can better animate stuff
+      // TODO consider switching growth stuff to draw() function so we can better animate stuff
       // add a isGrowing recursive function to branch (just added this but needs testing)
       // only grow one depth at a time
       for(int i = _branchDepthCount; i <= newDesiredTreeDepth; i++){
