@@ -5,7 +5,7 @@ The github repo for HCID521 - Prototyping Studio Winter 2019
 [Blink.ino](https://github.com/jonfroehlich/HCID521Wi2019/tree/master/Arduino/Blink/Blink.ino)<br/>
 Turns on and off Pin 3 once a second
 
-[BlinkWithSerialPrint](https://github.com/jonfroehlich/HCID521Wi2019/tree/master/Arduino/BlinkWithSerialPrint/BlinkWithSerialPrint.ino)<br/>
+[BlinkWithSerialPrint.ino](https://github.com/jonfroehlich/HCID521Wi2019/tree/master/Arduino/BlinkWithSerialPrint/BlinkWithSerialPrint.ino)<br/>
 Turns on and off Pin 3 and shows how to use Serial.print to print values to the Serial Monitor
 
 [Blink2.ino](https://github.com/jonfroehlich/HCID521Wi2019/tree/master/Arduino/Blink2/Blink2.ino)<br/>
