@@ -59,8 +59,13 @@ void draw() {
     if(_activeInputs[inputIndex]){
       for (int dataIndex = _curWriteIndex; dataIndex < width; dataIndex++){
         // draw the line
-        int yVal = _circularBuffer[inputIndex][dataIndex];
-        drawValue(xPos, yVal, _colorPalette[inputIndex]);
+        int xPos1 = xPos - 1;   
+        int yVal1 = dataIndex > 0 ? _circularBuffer[inputIndex][dataIndex - 1] :
+                        _circularBuffer[inputIndex][width - 1];
+        int xPos2 = xPos;
+        int yVal2 = _circularBuffer[inputIndex][dataIndex];
+        
+        drawLine(xPos1, yVal1, xPos2, yVal2, _colorPalette[inputIndex]);
         xPos++;
         //println("inputIndex= " + inputIndex + " dataIndex=" + dataIndex + " _curWriteIndex=" + _curWriteIndex + " yVal=" + yVal + " xPos=" + xPos);
       }
@@ -72,8 +77,13 @@ void draw() {
     if(_activeInputs[inputIndex]){
       for (int dataIndex = 0; dataIndex < _curWriteIndex; dataIndex++){
         // draw the line
-        int yVal = _circularBuffer[inputIndex][dataIndex];
-        drawValue(xPos, yVal, _colorPalette[inputIndex]);
+        int xPos1 = xPos - 1;   
+        int yVal1 = dataIndex > 0 ? _circularBuffer[inputIndex][dataIndex - 1] :
+                        _circularBuffer[inputIndex][width - 1];
+        int xPos2 = xPos;
+        int yVal2 = _circularBuffer[inputIndex][dataIndex];
+        
+        drawLine(xPos1, yVal1, xPos2, yVal2, _colorPalette[inputIndex]);
         xPos++;
         //println("inputIndex=" + inputIndex + " dataIndex=" + dataIndex + " _curWriteIndex=" + _curWriteIndex + " yVal=" + yVal + " xPos=" + xPos);
       }
@@ -83,6 +93,16 @@ void draw() {
 
 /**
  * Draws a line at the specified x,y position (the y value is inverted to draw from bottom up)
+ * Convenience method because we draw a line from two different loops
+ */
+void drawLine(int xPos1, int yPos1, int xPos2, int yPos2, color dataColor){
+  stroke(dataColor); //set the color
+  line(xPos1, height - yPos1, xPos2, height - yPos2);
+}
+
+
+/**
+ * Draws a point at the specified x,y position (the y value is inverted to draw from bottom up)
  * Convenience method because we draw a line from two different loops
  */
 void drawValue(int xPos, int yPos, color dataColor){
@@ -98,7 +118,13 @@ void serialEvent (Serial myPort) {
     String inString = trim(_serialPort.readStringUntil('\n'));
     
     if(inString != null){
-      float [] data = float(split(inString, ','));
+      float [] data;
+      // Our parser can handle either csv strings or just one float per line
+      if(inString.contains(",")){
+        data = float(split(inString, ','));
+      }else{
+        data = new float[] { float(inString) };
+      }
       //println("_curWriteIndex=" + _curWriteIndex + " Read in: " + inString);
       //printArray(data);
       
