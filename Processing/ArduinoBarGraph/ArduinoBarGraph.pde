@@ -63,7 +63,14 @@ void serialEvent (Serial myPort) {
     String inString = trim(_serialPort.readStringUntil('\n'));
     
     if(inString != null){
-      float [] data = float(split(inString, ','));
+      float [] data;
+      // Our parser can handle either csv strings or just one float per line
+      if(inString.contains(",")){
+        data = float(split(inString, ','));
+      }else{
+        data = new float[] { float(inString) };
+      }
+      
       //println(" Read in: " + inString);
       //printArray(data);
       
