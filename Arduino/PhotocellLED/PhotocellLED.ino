@@ -19,8 +19,8 @@ const int PHOTOCELL_INPUT_PIN = A0;
 // resistor that you selected). So, the best way to set these values
 // is to view the photocellVal in the Serial Monitor or Serial Plotter
 // under different expected lighting conditions and observe the values
-const int MIN_PHOTOCELL_VAL = 150; // Photocell reading in dark
-const int MAX_PHOTOCELL_VAL = 1023; // Photocell reading in ambient light
+const int MIN_PHOTOCELL_VAL = 500; // Photocell reading in dark
+const int MAX_PHOTOCELL_VAL = 850; // Photocell reading in ambient light
 
 void setup() {
   pinMode(LED_OUTPUT_PIN, OUTPUT);
