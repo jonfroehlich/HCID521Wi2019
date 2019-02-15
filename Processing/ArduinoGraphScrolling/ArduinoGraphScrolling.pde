@@ -78,7 +78,15 @@ void serialEvent (Serial myPort) {
     String inString = trim(_serialPort.readStringUntil('\n'));
     
     if(inString != null){
-      float curArduinoVal = float(inString);
+      float curArduinoVal = -1;
+      
+      // Our parser can handle either csv strings or just one float per line
+      if (inString.contains(",")) {
+        float [] data = float(split(inString, ','));
+        curArduinoVal = data[0];
+      } else {
+        curArduinoVal = float(inString);
+      }
       
       // Convert the arduino val [0,1] to a y-position value
       int curYVal = (int)map(curArduinoVal, 0, 1, 0, height);
