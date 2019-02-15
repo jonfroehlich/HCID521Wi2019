@@ -1,5 +1,6 @@
 /* 
- * This is skeleton code for continuously reading a single float value [0,1] off serial
+ * This is skeleton code for continuously reading multiple float values [0,1], which
+ * are in a comma separated list, off serial
  *
  * By Jon Froehlich
  * http://makeabilitylab.io
@@ -14,7 +15,7 @@ Serial _serialPort;
 // Our serial port index (this will change depending on your computer)
 final int ARDUINO_SERIAL_PORT_INDEX = 7; 
 
-float _currentVal = 0.5; // between [0,1], received from serial
+float [] _currentData = null;
 
 void setup(){
   size(640, 480);
@@ -27,7 +28,10 @@ void setup(){
 void draw(){
   background(10); // set background color
   
-  // TODO: do stuff with _currentVal
+  if(_currentData != null){
+    // TODO: do stuff with _currentData
+    
+  }
 }
 
 /**
@@ -40,8 +44,17 @@ void serialEvent (Serial myPort) {
     String inString = trim(_serialPort.readStringUntil('\n'));
     
     if(inString != null){
-      _currentVal = float(inString); // convert to a float
-      println("Read in: " + inString + " converted val: " + _currentVal);
+      float [] data;
+      // Our parser can handle either csv strings or just one float per line
+      if(inString.contains(",")){
+        data = float(split(inString, ','));
+      }else{
+        data = new float[] { float(inString) };
+      }
+      
+      printArray(data);
+      
+      _currentData = data;  
     }
   }
   catch(Exception e) {
