@@ -1,5 +1,5 @@
 /* 
- * This example receives a RED LED brightness values [0,1] and draws a circle corresponding
+ * This example receives a RED LED brightness value [0,1] and draws a circle corresponding
  * to that value
  *
  * By Jon Froehlich
