@@ -61,7 +61,11 @@ void draw() {
   // at the edge of the sensor array, go back to the beginning:
   if (_curIndex >= _sensorVals.length) {
     _curIndex = 0;
-    background(0); //clear the screen
+    
+    //clear the screen
+    for(int i = 0; i < _sensorVals.length; i++){
+      _sensorVals[i] = 0; 
+    }
   } else {
     // increment the horizontal position:
     _curIndex++;
