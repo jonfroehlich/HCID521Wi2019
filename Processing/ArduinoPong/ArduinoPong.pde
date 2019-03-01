@@ -9,6 +9,7 @@
  *   - Add in directional lighting (see /Basics/Directional)
  *   - Could use an animated sprite as a ball (see /Topics/Animation/AnimatedSprite)
  *   - Perhaps a bouncing ball/rectangle (or more than one) is injected into gameplay and pong ball bounces off of it
+ *   - record sound of four or five different ball knocking sounds and use them randomly when paddle hits ball
  *
  * By Jon Froehlich
  * http://makeabilitylab.io
@@ -111,8 +112,8 @@ void serialEvent (Serial myPort) {
       float leftPaddleYFrac = data[0];
       float rightPaddYFrac = data[1];
       
-      _leftPaddle.y = (int)map(leftPaddleYFrac, 0, 1, 0, height);
-      _rightPaddle.y = (int)map(rightPaddYFrac, 0, 1, 0, height);
+      _leftPaddle.y = (int)map(leftPaddleYFrac, 0, 1, 0, height - _leftPaddle.height);
+      _rightPaddle.y = (int)map(rightPaddYFrac, 0, 1, 0, height - _rightPaddle.height);
     }
 
     // Print out the received data (this is just for debugging)
