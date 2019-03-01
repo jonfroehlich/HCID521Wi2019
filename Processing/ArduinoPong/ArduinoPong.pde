@@ -1,4 +1,4 @@
-/* 
+/* A basic pong game intended to be used with ArduinoPong.ino
  *
  * FUTURE IDEAS:
  *   - Have a ball trail like /Demos/Graphics/Reflection2 or perhaps /Topics/Simualte/SmokeParticleSystem
