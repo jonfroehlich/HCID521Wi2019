@@ -39,7 +39,7 @@ void setup() {
   background(10);
   
   // setup the etch-a-sketch pen
-  stroke(180); // set the color //<>//
+  stroke(255, 0, 255); // set the color //<>//
   strokeWeight(4); // sets the pen stroke width
 }
 
@@ -57,6 +57,16 @@ void draw() {
     // Draw the line
     line(lastX, lastY, curX, curY);
   }
+}
+
+void keyPressed(){
+  if (key == ' ') { // if the user hits the spacebar, take a screenshot and save
+    println("Saving current drawing!");
+    saveFrame("etch-a-sketch-######.png");
+  } else { // else if the user hits any other key, clear the drawing
+    background(10);
+  }
+  
 }
 
 /**
